@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message by Shobhit Dev | codingstella</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./cover.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You Pgluu🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            2025.<br />From Your Suar hehe....
+          </p>
+        </div>
+        <div class="back">
+          <h2>A Special person for me ❤️✨</h2>
+
+       <p>I know you are very cute , and i am annoying you so much but trust me i love you more than myself pglii ,
+        Bss tumko thoda jhelna pdega merko , thoda sa pareshaan krr deta hu kabhi kabhi unn sb ke liye srry but i assure you that i will be there for you my baby!!
+        Tum ho sundriii ,, aur tumhe zarurat h meri hehehe , issi baat pe ek pappi to banti h !!
+       </p>
+
+         
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>From Strangers to Something Special ❤️✨</h2>
+          <p>
+           Jb se tumhe dekha clss 9th me tb se kuch alg sa hi attraction jaisa tha mere andr tumhare liye , books ke bahane tumahre dimaag me apna naam daalna chahta tha ki tum bhi mere baare me socho , dheere dheere wo attraction likeness me badal gya
+           phir covid ke reason se sb online hua aur luckily hmari baat start ho gyi 5th september , 2020 aur waha se start hui hamari kahani aur dheere dheere pyar bdhta gya aur ab itna hogya ki ek dusre ke bina nhi reh skte h , aur mujhe ye yakeen h hum dono iss riste ko future tk lete jaayenge  💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./s6.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Magic of You ✨💖</h2>
+          <p>
+            Aur dekha jaaye to tum bahut pyari , cute , golumolu aur haa saaaxxxy bhi ho 💕 tumhare saath hota hu to nhi pta time itna jldi kyu chla jaata hwo kehte h na ki agr tum sahi person ke saath hote ho tum 1 ghanta bhi 5 minute jaise lgte h , aisa hi tumahre saath hota hu to merko feel hota h
+            
+            Your presence feels like a soft melody. 2 line aapke liye - Tu Noor ka jharana h , mai pyaas purani. Maine aakh se gatak liya uss husn ka paani, tujha takte takte umr guzaru , koi aur khyaal me aaye jhat se utaruu....
+            Every time I see you, I’m reminded that some things in life are simply magical, and you, without a doubt, are one of them. ✨💖
+          </p>
+        </div>
+        <div class="back">
+          <h2>The Strength Within You 💫✨</h2>
+          <p>
+           bolte h n agr partner sahi ho to double motivation milti h , waisa hi h mere case me,, jaise tum mujhe samjhati ho  sahi glt , aur chilaati ho jb mai kuch glt krta hu wo sb mujhe bahut psnd aata h jaise koi apna ho jo tumhe sahi raaste dikhara h, You stood like a backbone for me 💖✨
+aur aisa nhi h mai support nhi krta , mai bhi bahut support krta hu hehe... bss tumko thoda sa gussa sila deta hu kabhi kabhi uske liye srry , prr thoda sa jhelna hoga tumhe merko hehheehe....
+🌟
+          </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Best Part of My Day🤞💖</h2>
+          <p>
+            Mere din ka best part tumse baatein share krna h, mil nhi paata daily kyuki possible nhi h , nhi to mai daily mil lu, kuch kuch din kisi reason se baat nhi krr paata hu but wo rare h , prr uske liye bhi maafi, mai tumko dukhi nhi krna chata, tum jb sad ya gussa hoti ho tb mujhe bilkul accha nhi lgta h,uss time kuch krne ka man nhi krta h , dukhi ho jaata hu mai bhi umm... , but Jo bhi h tumse baatein krna mujhe bahut accha lgta h, sukoon milta h..
+            
+            I never knew a conversation could mean so much, but with you, it does. 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./s5.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>A Wish from the Heart 💫💖</h1>
+          <p>
+            I wish Ki tumne jo bhi socha h apni zindigi me sb ho jaaye uske liye mai pray bhi krunga , apn dono jldi settle hoke apni gaadi ko ek direction denge hehe .. phir uske baad ghumu ghumu bhi to krna h hehe, bs hum dono ki acchi jagah job lgg jaaye yehi wish h meri phir shaadi krr ke mst zindigi kaatenge hehe
+            No matter what happens, I truly wish you a life filled with happiness, peace, and everything you deserve. 💕
+            
+            You are someone special, and I hope life gives you endless reasons to smile.✨
+          </p>
+        </div>
+        <div class="back">
+          <h1>Always Here for You 💖✨</h1>
+          <p>
+            I want you to know that I’ll always be here for you, no matter what. If you ever need anything—someone to listen, someone to support you, or just someone to make you smile—I’m just a message away.
+
+            My time is yours whenever you need it. Hrrr situation me mai tumhare paas hu just cll me aur meet me.
+            
+            Life can be unpredictable, but I hope you never feel alone. Whether it’s a good day or a tough one, I’ll always be here to cheer you on, to remind you how amazing you are.
+            
+            You deserve nothing but happiness, and if I can be a small part of that, I’d be honored. No matter where life takes us, just know that you’ll always have someone who cares—someone who truly believes in you.
+            bss ye yaad rakhna ki tumhare paas tumhara suar h jo tumko hrr chiz me support krega pgluuu💕
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>Pyari Bubu✨💖</h2>
+          <p>
+             Ab pyari ki kya hi baat kru tumhe toh pta hi h ki tum kitni pyari ho , cutu ho meri tum aur sundr bhi , tumko dekhta hu to pappi krne ka man krta h aisa lgta h ki tumhare saath hi reh jaau but wo thoda possible nhi h prr thik h jitna der bhi milta h tumahre saath time spend krne ke liye usme bahut accha lgta h mujhe ,   
+             issi baat me ek gaana - tera dil banke , mai saath tere dhadku , khud ko tujhse, ab door na jaane du , ke sang tere paaniyon sa paaniyo sa behta rahu , tu sunti rahe mai kahaniyon sa kehta rahu💖✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>Absolutely Breathtaking ✨💖</h2>
+          <p>
+           Jb tum saariya traditional pehnti ho tb to wow , tumko dekh ke jo happiness milta h na wo words me explain nhi krr skta but bahut pyari lgti ho saari me, aur abhi recently lehenga wli pic wow uspe to dil hi aagya h hehe , bss reality me dekhta hu uss dress me tumko , dekh paaunga ki dekhta reh jaaunga ye to uss din pta chlega , 
+            
+            A line in English - You are not just beautiful—you are a work of art, inside and out and your are only mine bss meri smjhiiiiii💕✨
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      <!-- <div class="page">
+        <div class="front">
+          <h2>Grateful for You🌹❤</h2>
+          <p>
+            I just wanted to take a moment to let you know how much I appreciate you. From the very start, you’ve been someone truly special—someone I admire more than words can express.
+
+            Meeting you, even for a short time, has been a gift.
+            
+            Your kindness, your presence, and the way you make every conversation feel meaningful mean more to me than you know. I’m grateful that our paths crossed, and no matter what the future holds, I’ll always be thankful for you.
+            
+            Some people leave a mark on our hearts without even trying—and you are one of them. 💕
+          </p>
+        </div>
+        <div class="back">
+          <h2>Will You Be Mine? ❤️✨</h2>
+          <p>From the moment we started talking, you’ve been on my mind in the best way possible. Your kindness, your beauty, your energy—everything about you feels so special to me.
+
+            You make my world brighter, my days better, and my heart a little fuller.
+            
+            I don’t know what the future holds, but I do know one thing—I’d love to have you by my side. So, here’s my question, straight from the heart…
+            
+            Will you be mine? 💖💕 </p>
+        </div>
+      </div> -->
+
+      <div class="page">
+        <div class="front">
+          <img src="./s3.jpg" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>For my pgluu bacchiii </h3>
+          <p>
+            Content:Your Suar rajeshhhhh<br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
